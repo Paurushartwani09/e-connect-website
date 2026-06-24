@@ -1,0 +1,1 @@
+import{a7 as r,a4 as a}from"./index-B9zurnOc.js";import{P as s}from"./ProductDetailTemplate-CMlPDv9Z.js";import"./PageHero-xF2lEOcb.js";function m(){const t=r.find(o=>o.id==="workx");return a.jsx(s,{product:t})}export{m as default};

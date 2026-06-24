@@ -1,0 +1,1 @@
+import{a7 as r,a4 as a}from"./index-B9zurnOc.js";import{P as e}from"./ProductDetailTemplate-CMlPDv9Z.js";import"./PageHero-xF2lEOcb.js";function c(){const t=r.find(o=>o.id==="selct");return a.jsx(e,{product:t})}export{c as default};

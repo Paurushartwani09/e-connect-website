@@ -1,1 +1,0 @@
-import{a6 as i,a4 as n}from"./index-CwBWW2kx.js";import{P as r}from"./ProductDetailTemplate-p7yAyywJ.js";import"./PageHero-Dnbm8Qq4.js";function s(){const t=i.find(o=>o.id==="citizen-connct");return n.jsx(r,{product:t})}export{s as default};
