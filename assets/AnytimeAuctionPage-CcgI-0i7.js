@@ -1,1 +1,0 @@
-import{a6 as a,a4 as i}from"./index-C-Pb7wno.js";import{P as r}from"./ProductDetailTemplate-DfBhlCxK.js";import"./PageHero-De88lOUX.js";function s(){const t=a.find(o=>o.id==="anytime-auction");return i.jsx(r,{product:t})}export{s as default};
