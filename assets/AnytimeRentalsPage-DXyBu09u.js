@@ -1,0 +1,1 @@
+import{a6 as r,a4 as e}from"./index-C-Pb7wno.js";import{P as o}from"./ProductDetailTemplate-DfBhlCxK.js";import"./PageHero-De88lOUX.js";function m(){const t=r.find(a=>a.id==="anytime-rentals");return e.jsx(o,{product:t})}export{m as default};
