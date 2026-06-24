@@ -1,0 +1,180 @@
+.clients {
+  padding: 100px 24px;
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.sectionTag {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--blue-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+}
+
+.title {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.titleAccent {
+  color: var(--blue-primary);
+}
+
+.desc {
+  font-size: 16px;
+  color: var(--text-light);
+  max-width: 400px;
+  line-height: 1.7;
+}
+
+/* Marquee */
+.marqueeWrap {
+  overflow: hidden;
+  margin-bottom: 16px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.marqueeTrack {
+  overflow: hidden;
+}
+
+.marqueeInner {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marqueeReverse {
+  animation: marqueeReverse 35s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marqueeInner:hover {
+  animation-play-state: paused;
+}
+
+/* Client Card */
+.clientCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 20px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.clientCard:hover {
+  border-color: var(--blue-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.clientLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--blue-primary), var(--accent-cyan));
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.clientName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+/* CTA Row */
+.ctaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.ctaRow p {
+  font-size: 15px;
+  color: var(--text-mid);
+  font-weight: 500;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #0057FF, #00C2FF);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 87, 255, 0.3);
+}
+
+.ctaBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 87, 255, 0.4);
+}
+
+@media (max-width: 640px) {
+  .clients {
+    padding: 60px 20px;
+    overflow-x: hidden;
+  }
+  .ctaRow {
+    flex-direction: column;
+    text-align: center;
+  }
+  .title { font-size: clamp(22px, 5vw, 36px); }
+  .ctaBtn { min-height: 44px; }
+}
+
+@media (max-width: 480px) {
+  .clients { padding: 56px 16px; }
+  .header { margin-bottom: 40px; }
+}

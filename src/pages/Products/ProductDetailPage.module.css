@@ -1,0 +1,515 @@
+/* ── Shared Product Detail Page Styles ────────────────────── */
+
+.page { }
+
+/* ── Overview Section ─── */
+.overviewSection {
+  padding: 80px 24px;
+  background: var(--bg-page);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 60px;
+  align-items: start;
+}
+
+.overviewText { }
+
+.sectionTag {
+  display: inline-block;
+  background: color-mix(in srgb, var(--pc) 12%, var(--bg-surface));
+  color: var(--pc);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  border: 1px solid color-mix(in srgb, var(--pc) 22%, transparent);
+}
+
+.overviewText p {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.overviewText p:last-child { margin-bottom: 0; }
+
+/* Stats card */
+.statsCard {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  position: sticky;
+  top: 100px;
+  box-shadow: var(--shadow-md);
+}
+
+.statsCardHeader {
+  background: var(--pg);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: white;
+}
+
+.statsCardIconWrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statsCardTitle {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.2;
+}
+
+.statsCardBadge {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 3px 10px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.statItem {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.statItem:nth-child(3n) { border-right: none; }
+.statItem:nth-last-child(-n+3) { border-bottom: none; }
+
+.statVal {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--pc);
+  line-height: 1.1;
+}
+
+.statLabel {
+  display: block;
+  font-size: 11px;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.deployTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.deployTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: color-mix(in srgb, var(--pc) 10%, var(--bg-surface));
+  color: var(--pc);
+  border: 1px solid color-mix(in srgb, var(--pc) 22%, transparent);
+}
+
+/* ── Modules Section ─── */
+.modulesSection {
+  padding: 80px 24px;
+  background: var(--bg-surface);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.sectionTitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.accent { color: var(--pc); }
+
+.sectionSub {
+  font-size: 15px;
+  color: var(--text-light);
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+.modulesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.moduleItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.moduleItem:hover {
+  border-color: var(--pc);
+  background: color-mix(in srgb, var(--pc) 5%, var(--bg-card));
+}
+
+.moduleCheck {
+  color: var(--pc);
+  flex-shrink: 0;
+}
+
+/* ── Features Section ─── */
+.featuresSection {
+  padding: 80px 24px;
+  background: var(--bg-page);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.featureCard {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--pg);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.featureCard:hover {
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--pc) 30%, var(--border));
+  transform: translateY(-4px);
+}
+
+.featureCard:hover::before { transform: scaleX(1); }
+
+.featureIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--pc) 12%, var(--bg-surface));
+  color: var(--pc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+}
+
+.featureCard:hover .featureIconWrap {
+  background: var(--pc);
+  color: white;
+}
+
+.featureTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.featureDesc {
+  font-size: 13.5px;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ── Use Cases Section ─── */
+.useCasesSection {
+  padding: 80px 24px;
+  background: var(--bg-surface);
+}
+
+.useCasesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.useCaseCard {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.3s ease;
+}
+
+.useCaseCard:hover {
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--pc) 30%, var(--border));
+  transform: translateY(-4px);
+}
+
+.useCaseNumber {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+  color: color-mix(in srgb, var(--pc) 18%, transparent);
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: -2px;
+}
+
+.useCaseTitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-top: -8px;
+}
+
+.useCaseDesc {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* ── Tech Stack Section ─── */
+.techSection {
+  padding: 60px 24px;
+  background: var(--bg-page);
+  border-top: 1px solid var(--border);
+}
+
+.techInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.techLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.techTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 50px;
+  background: var(--bg-surface);
+  color: var(--text-mid);
+  border: 1.5px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.techTag:hover {
+  border-color: var(--pc);
+  color: var(--pc);
+  background: color-mix(in srgb, var(--pc) 8%, var(--bg-surface));
+}
+
+/* ── CTA Section ─── */
+.ctaSection {
+  padding: 80px 24px;
+  background: var(--bg-surface);
+}
+
+.ctaBanner {
+  background: var(--gradient-hero);
+  border-radius: 28px;
+  padding: 72px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaOrb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+  top: -200px;
+  right: -100px;
+  pointer-events: none;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.ctaTitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 800;
+  color: white;
+}
+
+.ctaDesc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.72);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+.ctaBtns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--bg-card);
+  color: var(--blue-primary);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.ctaPrimary:hover { transform: translateY(-3px); }
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.ctaSecondary:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Responsive ─── */
+@media (max-width: 1024px) {
+  .overviewGrid { grid-template-columns: 1fr; }
+  .statsCard { position: static; }
+  .featuresGrid { grid-template-columns: repeat(2, 1fr); }
+  .useCasesGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .overviewSection,
+  .modulesSection,
+  .featuresSection,
+  .useCasesSection,
+  .ctaSection { padding: 60px 20px; }
+  .modulesGrid { grid-template-columns: 1fr; }
+  .featuresGrid { grid-template-columns: 1fr; }
+  .useCasesGrid { grid-template-columns: 1fr; }
+  .techInner { flex-direction: column; align-items: flex-start; }
+  .ctaBanner { padding: 44px 24px; }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .statItem:nth-child(2n) { border-right: none; }
+  .statItem:nth-child(3n) { border-right: 1px solid var(--border); }
+  .statItem:nth-child(2n):not(:nth-last-child(-n+2)) { border-bottom: 1px solid var(--border); }
+  .sectionTitle { font-size: clamp(22px, 5vw, 34px); }
+}
+
+@media (max-width: 480px) {
+  .overviewSection,
+  .modulesSection,
+  .featuresSection,
+  .useCasesSection,
+  .ctaSection { padding: 56px 16px; }
+  .ctaBtns { flex-direction: column; align-items: center; }
+  .ctaPrimary, .ctaSecondary { min-height: 44px; width: 100%; justify-content: center; }
+  .statsCard { border-radius: 18px; }
+}

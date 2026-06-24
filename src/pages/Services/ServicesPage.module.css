@@ -1,0 +1,214 @@
+.section { padding: 80px 24px; background: var(--bg-page); }
+.processSection { padding: 80px 24px; background: var(--bg-surface); }
+.ctaSection { padding: 80px 24px; background: var(--bg-page); }
+
+.container { max-width: 1280px; margin: 0 auto; }
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 56px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--blue-primary);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 50px;
+}
+
+.sectionTitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(26px,3.5vw,42px);
+  font-weight: 800; color: var(--text-dark);
+  line-height: 1.15; letter-spacing: -0.5px;
+}
+.accent { color: var(--blue-primary); }
+
+.sectionDesc {
+  font-size: 15px; color: var(--text-light);
+  font-weight: 500; letter-spacing: 0.3px;
+}
+
+/* ── Services Grid ── */
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 28px;
+  border: 1.5px solid var(--border);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); }
+.cardActive { border-color: var(--card-color) !important; box-shadow: var(--shadow-md); }
+
+.cardTopBar {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--card-gradient);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.card:hover .cardTopBar, .cardActive .cardTopBar { transform: scaleX(1); }
+
+.cardHeader { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+
+.cardIconWrap {
+  width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+  background: var(--card-gradient);
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--card-color) 30%, transparent);
+}
+
+.cardMeta { display: flex; flex-direction: column; gap: 3px; }
+.cardSubtitle { font-size: 11px; font-weight: 600; color: var(--card-color); letter-spacing: 1px; text-transform: uppercase; }
+.cardTitle { font-size: 18px; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
+
+.cardDesc { font-size: 14px; color: var(--text-light); line-height: 1.7; margin-bottom: 18px; }
+
+/* Stats row */
+.statsRow {
+  display: flex; gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  margin-bottom: 18px;
+}
+.statItem {
+  flex: 1; padding: 12px 8px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.statItem:last-child { border-right: none; }
+.statVal { display: block; font-size: 16px; font-weight: 800; color: var(--card-color); line-height: 1.2; }
+.statLabel { display: block; font-size: 10px; color: var(--text-light); font-weight: 500; margin-top: 2px; }
+
+/* Toggle */
+.toggleBtn {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600;
+  color: var(--card-color);
+  background: color-mix(in srgb, var(--card-color) 10%, transparent);
+  padding: 8px 16px; border-radius: 50px;
+  border: 1.5px solid color-mix(in srgb, var(--card-color) 25%, transparent);
+  font-family: inherit;
+  transition: all 0.2s ease;
+  margin-bottom: 4px;
+}
+.toggleBtn:hover { background: color-mix(in srgb, var(--card-color) 18%, transparent); }
+
+/* Features */
+.featuresInner {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 16px 0 4px;
+  border-top: 1px solid var(--border);
+  margin-top: 12px;
+}
+.featureItem {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--text-mid); font-weight: 500;
+}
+.featureCheck { color: var(--card-color); flex-shrink: 0; }
+
+/* ── Process ── */
+.processGrid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;
+  position: relative;
+}
+
+.processCard {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 20px; padding: 28px 24px;
+  text-align: center; position: relative;
+  transition: box-shadow 0.3s ease;
+}
+.processCard:hover { box-shadow: var(--shadow-md); }
+
+.processStep {
+  font-family: 'Raleway', sans-serif;
+  font-size: 40px; font-weight: 800;
+  color: var(--blue-light);
+  line-height: 1; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--blue-primary), var(--accent-cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.processIconWrap {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--blue-light);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue-primary); margin: 0 auto 16px;
+}
+
+.processTitle { font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+.processDesc { font-size: 13px; color: var(--text-light); line-height: 1.65; }
+
+.processConnector {
+  position: absolute; top: 50%; right: -20px;
+  transform: translateY(-50%);
+  color: var(--blue-primary); opacity: 0.4; z-index: 1;
+}
+
+/* ── CTA ── */
+.ctaBanner {
+  background: var(--gradient-hero);
+  border-radius: 28px; padding: 64px 48px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.ctaOrb {
+  position: absolute; width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+  top: -150px; right: -100px; pointer-events: none;
+}
+.ctaContent { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.ctaIcon { color: rgba(255,255,255,0.7); }
+.ctaTitle { font-family: 'Raleway', sans-serif; font-size: clamp(24px,3.5vw,40px); font-weight: 800; color: white; }
+.ctaDesc { font-size: 16px; color: rgba(255,255,255,0.72); max-width: 480px; line-height: 1.7; }
+.ctaBtns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.ctaPrimary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; background: var(--bg-card); color: var(--blue-primary);
+  font-size: 15px; font-weight: 700; border-radius: 50px;
+  transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+.ctaPrimary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+.ctaSecondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.3); color: white;
+  font-size: 15px; font-weight: 600; border-radius: 50px;
+  transition: all 0.3s ease;
+}
+.ctaSecondary:hover { background: rgba(255,255,255,0.2); }
+
+@media (max-width: 1024px) {
+  .servicesGrid { grid-template-columns: repeat(2,1fr); }
+  .processGrid { grid-template-columns: repeat(2,1fr); }
+  .processConnector { display: none; }
+}
+@media (max-width: 640px) {
+  .section, .processSection, .ctaSection { padding: 60px 20px; }
+  .servicesGrid, .processGrid { grid-template-columns: 1fr; }
+  .ctaBanner { padding: 40px 24px; }
+}
+
+@media (max-width: 480px) {
+  .section, .processSection, .ctaSection { padding: 56px 16px; }
+  .sectionHeader { margin-bottom: 36px; }
+  .sectionTitle { font-size: clamp(22px, 5vw, 32px); }
+
+  .card { padding: 22px 18px; }
+  .cardTitle { font-size: 16px; }
+  .processCard { padding: 22px 18px; }
+  .ctaBanner { padding: 36px 20px; }
+  .ctaPrimary, .ctaSecondary { min-height: 44px; padding: 12px 20px; font-size: 14px; }
+}
