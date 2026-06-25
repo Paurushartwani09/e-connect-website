@@ -1,1 +1,0 @@
-import{a7 as r,a4 as s}from"./index-7lmEs0wj.js";import{P as o}from"./ProductDetailTemplate-pvkhVGok.js";import"./PageHero-BlzyhA42.js";function n(){const a=r.find(t=>t.id==="eprashashan");return s.jsx(o,{product:a})}export{n as default};
