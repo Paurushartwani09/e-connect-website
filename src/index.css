@@ -118,3 +118,24 @@ ul, ol { list-style: none; }
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ─── PERFORMANCE: Reduce motion for accessibility & perf ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── PERFORMANCE: content-visibility for off-screen sections */
+/* Applied via utility class to below-fold sections */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* ─── PERFORMANCE: will-change only on actively animating elements */
+/* Framer Motion handles this, but baseline reset prevents over-promotion */
+.no-promote { will-change: auto; }

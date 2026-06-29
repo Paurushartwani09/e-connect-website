@@ -1,5 +1,50 @@
-.section { padding: 100px 24px; background: var(--bg-surface); overflow: hidden; }
-.container { max-width: 1280px; margin: 0 auto; }
+.section {
+  padding: 100px 24px;
+  background: var(--bg-surface);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Decorative dots grid */
+.section::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--blue-primary) 18%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Gradient fade masks so dots fade at edges */
+.section::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, var(--bg-surface) 0%, transparent 80%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, var(--bg-surface) 0%, transparent 80%),
+    radial-gradient(ellipse 30% 100% at 0% 50%, var(--bg-surface) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 100% at 100% 50%, var(--bg-surface) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* large faded ring decoration */
+.bgRing {
+  position: absolute; top: -200px; right: -200px;
+  width: 700px; height: 700px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--blue-primary) 6%, transparent);
+  pointer-events: none; z-index: 0;
+  animation: ringRotate 40s linear infinite;
+}
+.bgRing2 {
+  position: absolute; bottom: -180px; left: -180px;
+  width: 500px; height: 500px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent-purple) 6%, transparent);
+  pointer-events: none; z-index: 0;
+  animation: ringRotate 55s linear infinite reverse;
+}
+@keyframes ringRotate { to { transform: rotate(360deg); } }
+
+.container { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
 
 .header { text-align: center; margin-bottom: 56px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .tagRow { display: inline-flex; align-items: center; gap: 7px; background: var(--blue-light); color: var(--blue-primary); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 50px; }

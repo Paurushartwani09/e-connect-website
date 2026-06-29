@@ -2,6 +2,21 @@
   padding: 100px 24px;
   background: var(--bg-page);
   overflow: hidden;
+  position: relative;
+}
+
+/* Subtle diagonal stripes pattern */
+.section::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    color-mix(in srgb, var(--blue-primary) 2%, transparent) 40px,
+    color-mix(in srgb, var(--blue-primary) 2%, transparent) 41px
+  );
+  pointer-events: none;
 }
 
 .container {
@@ -11,6 +26,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+  position: relative; z-index: 1;
 }
 
 /* ── Visual ── */
@@ -114,7 +130,16 @@
   width: fit-content;
 }
 
-/* Float cards */
+/* SVG globe illustration */
+.vcSvg {
+  position: absolute; right: 16px; top: 50%;
+  transform: translateY(-50%);
+  width: 120px; height: 120px;
+  opacity: 0.6;
+  animation: globeSpin 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes globeSpin { to { transform: translateY(-50%) rotate(360deg); } }
 .floatCard {
   position: absolute;
   bottom: -20px;

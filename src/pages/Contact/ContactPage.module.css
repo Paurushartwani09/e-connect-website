@@ -136,3 +136,6 @@ a.contactCardValue:hover { color: var(--cc); }
   .formPanel { padding: 24px; }
   .formRow { grid-template-columns: 1fr; }
 }
+
+.submitBtn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+.sendError { font-size: 13px; color: #ef4444; text-align: center; margin-top: 4px; }

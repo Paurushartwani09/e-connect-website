@@ -7,12 +7,37 @@
     <meta name="description" content="E-Connect Solutions - Enterprise IT Solutions Provider. Enabling IT Since 1991. Application Development, IT Services, E-Governance, M-SaaS Products." />
     <meta name="keywords" content="IT solutions, enterprise software, e-governance, application development, IT services, Udaipur, India" />
     <title>E-Connect Solutions | Enterprise IT Solutions Since 1991</title>
+
+    <!-- DNS prefetch for external origins -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- Non-render-blocking font load: preconnect + swap display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
+
+    <!-- Load Raleway with display=swap — text renders in fallback font immediately -->
+    <!-- Only load the weights actually used: 400,600,700,800 -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    </noscript>
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#0057FF" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="E-Connect Solutions | Enterprise IT Solutions Since 1991" />
+    <meta property="og:description" content="Comprehensive end-to-end IT solutions for governments, enterprises and industries. CMMI Level 5 · 35+ Years · 500+ Team." />
+    <meta property="og:type" content="website" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

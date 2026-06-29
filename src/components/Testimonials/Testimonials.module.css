@@ -2,6 +2,30 @@
   padding: 100px 24px;
   background: var(--bg-card);
   overflow: hidden;
+  position: relative;
+}
+
+/* Soft gradient blobs behind content */
+.testimonials::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 10% 50%, color-mix(in srgb, var(--blue-primary) 5%, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 50% at 90% 30%, color-mix(in srgb, var(--accent-purple) 5%, transparent) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Large decorative quote mark watermark */
+.bgQuote {
+  position: absolute; top: 20px; left: 50%;
+  transform: translateX(-50%);
+  font-family: Georgia, serif;
+  font-size: 480px; line-height: 1;
+  font-weight: 900;
+  color: var(--blue-primary);
+  opacity: 0.025;
+  pointer-events: none; user-select: none;
+  z-index: 0;
 }
 
 .container {
@@ -12,6 +36,7 @@
   grid-template-rows: auto 1fr;
   gap: 48px;
   align-items: start;
+  position: relative; z-index: 1;
 }
 
 .header {
