@@ -85,11 +85,11 @@ export default function Contact() {
     const templateParams = {
       from_name:  form.name,
       from_email: form.email,
+      reply_to:   form.email,
       phone:      'Not provided',
       company:    form.company || 'Not provided',
       service:    form.service || 'Not specified',
       message:    form.message,
-      to_email:   'paurushartwanieconnect@gmail.com',
     }
 
     emailjs
