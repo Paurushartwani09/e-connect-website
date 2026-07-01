@@ -5,9 +5,9 @@ import emailjs from '@emailjs/browser'
 import { staggerContainer, fadeUp, fadeLeft, fadeRight } from '../../utils/animations'
 import styles from './Contact.module.css'
 
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
+const EMAILJS_SERVICE_ID  = 'service_kfqn2ls'
+const EMAILJS_TEMPLATE_ID = 'template_femblud'
+const EMAILJS_PUBLIC_KEY  = 'WHazmippAcX7Riyvm'
 
 interface ContactInfo {
   icon: string
