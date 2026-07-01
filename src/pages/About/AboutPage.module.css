@@ -402,63 +402,70 @@
   padding: 32px;
   text-align: center;
   transition: all 0.3s ease;
+  cursor: default;
+}
+.leaderCard:hover { box-shadow: var(--shadow-md); transform: translateY(-6px); }
+
+/* ── Avatar wrapper: positions the ring outside the clipped circle ── */
+.leaderAvatarWrap {
   position: relative;
-  overflow: hidden;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 18px;
 }
 
-.leaderCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--blue-primary), var(--accent-cyan));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.leaderCard:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-6px);
-}
-
-.leaderCard:hover::before {
-  transform: scaleX(1);
-}
-
-.leaderAvatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  color: white;
-  font-size: 24px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-  box-shadow: 0 8px 24px rgba(0, 87, 255, 0.3);
-  position: relative;
-}
-
-/* animated ring around avatar */
-.leaderAvatar::after {
+/* Spinning arc ring — outside the circle */
+.leaderAvatarWrap::after {
   content: '';
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 2px solid transparent;
-  border-top-color: rgba(0, 194, 255, 0.5);
-  border-right-color: rgba(0, 87, 255, 0.3);
-  animation: avatarRing 4s linear infinite;
+  border: 2.5px solid transparent;
+  border-top-color: rgba(0, 194, 255, 0.85);
+  border-right-color: color-mix(in srgb, var(--lc, #0057FF) 60%, transparent);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  animation: leaderRingSpin 3s linear infinite;
+  pointer-events: none;
+  z-index: 2;
 }
 
-@keyframes avatarRing {
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes leaderRingSpin { to { transform: rotate(360deg); } }
+
+/* Gradient circle — always visible as background/fallback */
+.leaderAvatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 8px 24px rgba(0, 87, 255, 0.28);
+}
+
+/* Initials text — behind the photo */
+.leaderInitials {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+  font-family: 'Raleway', sans-serif;
+  user-select: none;
+  position: relative;
+  z-index: 0;
+}
+
+/* Photo — overlaid on top, cropped to circle */
+.leaderPhoto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
 }
 
 .leaderName {

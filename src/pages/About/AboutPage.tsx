@@ -29,6 +29,7 @@ interface Leader {
   role: string
   color: string
   quote: string
+  photo: string   // filename only — served from public/
 }
 
 interface FactItem {
@@ -56,9 +57,9 @@ const values: Value[] = [
 ]
 
 const leadership: Leader[] = [
-  { initials: 'JP', name: 'Jaimin Patel',     role: 'Chief Business Officer & Founder', color: '#0057FF', quote: 'We are consistently delivering business value to our customers, enabling them to excel in the emerging e-Economy.' },
-  { initials: 'MV', name: 'Mukesh Vyas',      role: 'Head of Human Resource',           color: '#7B61FF', quote: 'Working on hundreds of projects has taught us how to quickly master new skill sets and deliver excellence.' },
-  { initials: 'RC', name: 'Rajendra Chouhan', role: 'Head of Software Delivery',        color: '#00B894', quote: 'Every organization is unique. We tailor our offering models to match your specific business needs and budget.' },
+  { initials: 'JP', name: 'Jaimin Patel',     role: 'Chief Business Officer & Founder', color: '#0057FF', photo: 'jamin-sir2.png',       quote: 'We are consistently delivering business value to our customers, enabling them to excel in the emerging e-Economy.' },
+  { initials: 'MV', name: 'Mukesh Vyas',      role: 'Head of Human Resource',           color: '#7B61FF', photo: 'mukesh-vyas-sir.png',  quote: 'Working on hundreds of projects has taught us how to quickly master new skill sets and deliver excellence.' },
+  { initials: 'RC', name: 'Rajendra Chouhan', role: 'Head of Software Delivery',        color: '#00B894', photo: 'rajendra-ch-sir.png',  quote: 'Every organization is unique. We tailor our offering models to match your specific business needs and budget.' },
 ]
 
 export default function AboutPage() {
@@ -266,6 +267,9 @@ function ValuesSection() {
 
 function LeadershipSection() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
+  // BASE_URL is '/e-connect-website/' on gh-pages, '/' in dev
+  const base = import.meta.env.BASE_URL
+
   return (
     <section className={styles.leadershipSection} ref={ref}>
       <div className={styles.container}>
@@ -289,9 +293,28 @@ function LeadershipSection() {
               transition={{ delay: i * 0.12, duration: 0.6 }}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
             >
-              <div className={styles.leaderAvatar} style={{ background: `linear-gradient(135deg,${l.color},var(--accent-cyan))` }}>
-                {l.initials}
+              {/* Avatar wrapper — holds gradient bg + spinning ring + photo */}
+              <div
+                className={styles.leaderAvatarWrap}
+                style={{ '--lc': l.color } as React.CSSProperties}
+              >
+                {/* Gradient circle background (shows as fallback or ring base) */}
+                <div
+                  className={styles.leaderAvatar}
+                  style={{ background: `linear-gradient(135deg,${l.color},var(--accent-cyan))` }}
+                >
+                  {/* Initials — visible only if photo fails to load */}
+                  <span className={styles.leaderInitials}>{l.initials}</span>
+                </div>
+                {/* Photo overlaid on top of initials circle */}
+                <img
+                  src={`${base}${l.photo}`}
+                  alt={l.name}
+                  className={styles.leaderPhoto}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
               </div>
+
               <h3 className={styles.leaderName}>{l.name}</h3>
               <p className={styles.leaderRole}>{l.role}</p>
               <div className={styles.leaderQuote}>
