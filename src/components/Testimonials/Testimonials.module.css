@@ -119,17 +119,58 @@
   gap: 16px;
 }
 
-.authorAvatar {
-  width: 48px;
-  height: 48px;
+/* ── Main avatar wrapper + photo ── */
+.authorAvatarWrap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+/* Spinning ring around main avatar */
+.authorAvatarWrap::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
   border-radius: 50%;
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
+  border: 2px solid transparent;
+  border-top-color: rgba(0,194,255,0.8);
+  border-right-color: color-mix(in srgb, var(--tc, #0057FF) 60%, transparent);
+  animation: testRingSpin 3s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes testRingSpin { to { transform: rotate(360deg); } }
+
+.authorAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  position: absolute;
+  inset: 0;
+}
+
+.authorInitials {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  position: relative;
+  z-index: 0;
+  user-select: none;
+}
+
+.authorPhoto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
 }
 
 .authorName {
@@ -196,17 +237,43 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* ── Side avatar wrapper + photo ── */
+.sideAvatarWrap {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
 .sideAvatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: white;
-  font-size: 12px;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  position: absolute;
+  inset: 0;
+}
+
+.sideInitials {
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  position: relative;
+  z-index: 0;
+  user-select: none;
+}
+
+.sidePhoto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 1;
 }
 
 .sideName {

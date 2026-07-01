@@ -12,17 +12,19 @@ interface Testimonial {
   company: string
   avatar: string
   color: string
+  photo: string   // filename in public/
 }
 
 const testimonials: Testimonial[] = [
-  { id: 1, quote: 'Working on hundreds of projects with a wide range of objectives, sizes, and technologies has taught us how to quickly master new skill sets.', name: 'Mukesh Vyas', role: 'Head of Human Resource', company: 'E-Connect Solutions', avatar: 'MV', color: '#0057FF' },
-  { id: 2, quote: "Resources, budgets, timelines, and people are different in each organization, and so is the solution to its business challenges. Keeping this in mind, we have various offering models to cater to your business's needs.", name: 'Rajendra Chouhan', role: 'Head of Software Delivery', company: 'E-Connect Solutions', avatar: 'RC', color: '#7B61FF' },
-  { id: 3, quote: 'We are consistently delivering business value to our customers, and enabling them to excel and win in the emerging e-Economy.', name: 'Jaimin Patel', role: 'Chief Business Officer & Founder', company: 'E-Connect Solutions', avatar: 'JP', color: '#00B894' },
+  { id: 1, quote: 'Working on hundreds of projects with a wide range of objectives, sizes, and technologies has taught us how to quickly master new skill sets.', name: 'Mukesh Vyas',      role: 'Head of Human Resource',           company: 'E-Connect Solutions', avatar: 'MV', color: '#0057FF', photo: 'mukesh-vyas-sir.png'  },
+  { id: 2, quote: "Resources, budgets, timelines, and people are different in each organization, and so is the solution to its business challenges. Keeping this in mind, we have various offering models to cater to your business's needs.", name: 'Rajendra Chouhan', role: 'Head of Software Delivery',        company: 'E-Connect Solutions', avatar: 'RC', color: '#7B61FF', photo: 'rajendra-ch-sir.png'  },
+  { id: 3, quote: 'We are consistently delivering business value to our customers, and enabling them to excel and win in the emerging e-Economy.',                name: 'Jaimin Patel',     role: 'Chief Business Officer & Founder', company: 'E-Connect Solutions', avatar: 'JP', color: '#00B894', photo: 'jamin-sir2.png'        },
 ]
 
 export default function Testimonials() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
   const [active, setActive] = useState<number>(0)
+  const base = import.meta.env.BASE_URL
 
   useEffect(() => {
     const timer = setInterval(() => setActive(prev => (prev + 1) % testimonials.length), 5000)
@@ -50,9 +52,19 @@ export default function Testimonials() {
               exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
               <p className={styles.quoteText}>{testimonials[active].quote}</p>
               <div className={styles.author}>
-                <div className={styles.authorAvatar}
-                  style={{ background: `linear-gradient(135deg, ${testimonials[active].color}, #00C2FF)` }}>
-                  {testimonials[active].avatar}
+                {/* Main avatar with photo */}
+                <div className={styles.authorAvatarWrap}
+                  style={{ '--tc': testimonials[active].color } as React.CSSProperties}>
+                  <div className={styles.authorAvatar}
+                    style={{ background: `linear-gradient(135deg, ${testimonials[active].color}, #00C2FF)` }}>
+                    <span className={styles.authorInitials}>{testimonials[active].avatar}</span>
+                  </div>
+                  <img
+                    src={`${base}${testimonials[active].photo}`}
+                    alt={testimonials[active].name}
+                    className={styles.authorPhoto}
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
                 </div>
                 <div>
                   <div className={styles.authorName}>{testimonials[active].name}</div>
@@ -69,6 +81,7 @@ export default function Testimonials() {
           </div>
         </motion.div>
 
+        {/* Side cards with photo */}
         <div className={styles.sideCards}>
           {testimonials.map((t, i) => (
             <motion.div key={t.id}
@@ -76,9 +89,18 @@ export default function Testimonials() {
               initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
               onClick={() => setActive(i)}>
-              <div className={styles.sideAvatar}
-                style={{ background: `linear-gradient(135deg, ${t.color}, #00C2FF)` }}>
-                {t.avatar}
+              <div className={styles.sideAvatarWrap}
+                style={{ '--tc': t.color } as React.CSSProperties}>
+                <div className={styles.sideAvatar}
+                  style={{ background: `linear-gradient(135deg, ${t.color}, #00C2FF)` }}>
+                  <span className={styles.sideInitials}>{t.avatar}</span>
+                </div>
+                <img
+                  src={`${base}${t.photo}`}
+                  alt={t.name}
+                  className={styles.sidePhoto}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
               </div>
               <div>
                 <div className={styles.sideName}>{t.name}</div>
