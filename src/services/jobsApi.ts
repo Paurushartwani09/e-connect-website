@@ -89,3 +89,45 @@ export function formatExp(years: number): string {
 export function splitTags(raw: string): string[] {
   return raw.split('$$').map(s => s.trim()).filter(Boolean)
 }
+
+// ── Config option shape ──────────────────────────────────
+export interface ConfigOption {
+  id:   number | string
+  name: string
+  // API may use different key names
+  value?: string
+  label?: string
+  text?:  string
+}
+
+async function fetchConfig(apiKey: string): Promise<ConfigOption[]> {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${JWT_TOKEN}` },
+    body: JSON.stringify({ apiKey }),
+  })
+  if (!res.ok) throw new Error(`Config API error: ${res.status}`)
+  const json = await res.json()
+  const raw: ConfigOption[] = json.data ?? json.Data ?? json.result ?? json.Result ?? []
+  return Array.isArray(raw) ? raw : []
+}
+
+// Returns display label from a ConfigOption
+export function getOptionLabel(o: ConfigOption): string {
+  return o.name ?? o.label ?? o.text ?? o.value ?? String(o.id)
+}
+
+/** Qualification & Certification list */
+export function fetchQualifications(): Promise<ConfigOption[]> {
+  return fetchConfig('config.qualification.getAll.A')
+}
+
+/** Preferred Location list */
+export function fetchLocations(): Promise<ConfigOption[]> {
+  return fetchConfig('config.officeLocation.getByTypeId.0')
+}
+
+/** Primary Skills list */
+export function fetchSkills(): Promise<ConfigOption[]> {
+  return fetchConfig('config.skillSet.getByTypeId.1')
+}

@@ -230,3 +230,22 @@
   .title { font-size: 16px; }
   .captchaWrap { flex-wrap: wrap; }
 }
+
+/* Dropdown loading state */
+.optsLoading {
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.optsLoading::before {
+  content: '';
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  border-top-color: var(--blue-primary);
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}

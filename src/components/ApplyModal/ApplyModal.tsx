@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiUpload, FiRefreshCw } from 'react-icons/fi'
-import { splitTags } from '../../services/jobsApi'
-import type { ApiJobDetail } from '../../services/jobsApi'
+import {
+  fetchQualifications, fetchLocations, fetchSkills, getOptionLabel,
+  type ApiJobDetail, type ConfigOption,
+} from '../../services/jobsApi'
 import styles from './ApplyModal.module.css'
 
 interface ApplyModalProps {
@@ -31,9 +33,22 @@ function genCaptcha() {
 }
 
 export default function ApplyModal({ jobTitle, detail, onClose }: ApplyModalProps) {
-  const qualOptions = detail ? splitTags(detail.qualifications) : []
-  const skillOptions = detail ? splitTags(detail.skills) : []
-  const locationOptions = detail ? splitTags(detail.location) : []
+  // ── Live dropdown options from API ───────────────────
+  const [qualOptions,  setQualOptions]  = useState<ConfigOption[]>([])
+  const [locOptions,   setLocOptions]   = useState<ConfigOption[]>([])
+  const [skillOptions, setSkillOptions] = useState<ConfigOption[]>([])
+  const [optsLoading,  setOptsLoading]  = useState(true)
+
+  useEffect(() => {
+    Promise.all([fetchQualifications(), fetchLocations(), fetchSkills()])
+      .then(([quals, locs, skills]) => {
+        setQualOptions(quals)
+        setLocOptions(locs)
+        setSkillOptions(skills)
+      })
+      .catch(() => { /* silently fall back to empty */ })
+      .finally(() => setOptsLoading(false))
+  }, [])
 
   const [form, setForm] = useState<FormState>({
     fullName: '', email: '', phone: '',
@@ -167,13 +182,18 @@ export default function ApplyModal({ jobTitle, detail, onClose }: ApplyModalProp
                       {form.qualification.length ? form.qualification.join(', ') : 'Select All'}
                     </span>
                     <div className={styles.multiDropdown}>
-                      {qualOptions.length > 0 ? qualOptions.map(q => (
-                        <label key={q} className={styles.checkItem}>
-                          <input type="checkbox" checked={form.qualification.includes(q)}
-                            onChange={() => toggleArr('qualification', q)} />
-                          {q}
-                        </label>
-                      )) : (
+                      {optsLoading ? (
+                        <span className={styles.optsLoading}>Loading…</span>
+                      ) : qualOptions.length > 0 ? qualOptions.map(q => {
+                        const label = getOptionLabel(q)
+                        return (
+                          <label key={String(q.id)} className={styles.checkItem}>
+                            <input type="checkbox" checked={form.qualification.includes(label)}
+                              onChange={() => toggleArr('qualification', label)} />
+                            {label}
+                          </label>
+                        )
+                      }) : (
                         <label className={styles.checkItem}>
                           <input type="checkbox" checked={form.qualification.includes('Any')}
                             onChange={() => toggleArr('qualification', 'Any')} />
@@ -194,13 +214,18 @@ export default function ApplyModal({ jobTitle, detail, onClose }: ApplyModalProp
                       {form.location.length ? form.location.join(', ') : 'Select one or more locations'}
                     </span>
                     <div className={styles.multiDropdown}>
-                      {locationOptions.length > 0 ? locationOptions.map(l => (
-                        <label key={l} className={styles.checkItem}>
-                          <input type="checkbox" checked={form.location.includes(l)}
-                            onChange={() => toggleArr('location', l)} />
-                          {l}
-                        </label>
-                      )) : ['Udaipur', 'Jaipur', 'Delhi', 'Remote'].map(l => (
+                      {optsLoading ? (
+                        <span className={styles.optsLoading}>Loading…</span>
+                      ) : locOptions.length > 0 ? locOptions.map(l => {
+                        const label = getOptionLabel(l)
+                        return (
+                          <label key={String(l.id)} className={styles.checkItem}>
+                            <input type="checkbox" checked={form.location.includes(label)}
+                              onChange={() => toggleArr('location', label)} />
+                            {label}
+                          </label>
+                        )
+                      }) : ['Udaipur', 'Jaipur', 'Delhi', 'Remote'].map(l => (
                         <label key={l} className={styles.checkItem}>
                           <input type="checkbox" checked={form.location.includes(l)}
                             onChange={() => toggleArr('location', l)} />
@@ -238,13 +263,18 @@ export default function ApplyModal({ jobTitle, detail, onClose }: ApplyModalProp
                       {form.skills.length ? form.skills.join(', ') : 'Select All'}
                     </span>
                     <div className={styles.multiDropdown}>
-                      {skillOptions.length > 0 ? skillOptions.map(s => (
-                        <label key={s} className={styles.checkItem}>
-                          <input type="checkbox" checked={form.skills.includes(s)}
-                            onChange={() => toggleArr('skills', s)} />
-                          {s}
-                        </label>
-                      )) : (
+                      {optsLoading ? (
+                        <span className={styles.optsLoading}>Loading…</span>
+                      ) : skillOptions.length > 0 ? skillOptions.map(s => {
+                        const label = getOptionLabel(s)
+                        return (
+                          <label key={String(s.id)} className={styles.checkItem}>
+                            <input type="checkbox" checked={form.skills.includes(label)}
+                              onChange={() => toggleArr('skills', label)} />
+                            {label}
+                          </label>
+                        )
+                      }) : (
                         <label className={styles.checkItem}>
                           <input type="checkbox" checked={form.skills.includes('General')}
                             onChange={() => toggleArr('skills', 'General')} />
