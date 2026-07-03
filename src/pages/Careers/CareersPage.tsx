@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fi'
 import type { IconType } from 'react-icons'
 import PageHero from '../../components/PageHero/PageHero'
+import ApplyModal from '../../components/ApplyModal/ApplyModal'
 import {
   fetchJobs, fetchJobDetail, cleanLocation, formatExp, splitTags,
   type ApiJob, type ApiJobDetail,
@@ -189,6 +190,7 @@ interface JobCardProps {
 function JobCard({ job, index, inView, expanded, onToggle }: JobCardProps) {
   const [detail, setDetail] = useState<ApiJobDetail | null>(null)
   const [detailLoading, setDetailLoading] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   // Fetch detail the first time this card is expanded
   useEffect(() => {
@@ -317,13 +319,26 @@ function JobCard({ job, index, inView, expanded, onToggle }: JobCardProps) {
                 <p className={styles.jobDesc}>Detailed description will be shown here.</p>
               )}
 
-              <Link to="/contact" className={styles.applyBtn}>
+              <button
+                type="button"
+                className={styles.applyBtn}
+                onClick={() => setShowModal(true)}
+              >
                 <FiUploadCloud size={15} /> Apply for this Role
-              </Link>
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Apply modal */}
+      {showModal && (
+        <ApplyModal
+          jobTitle={job.title}
+          detail={detail}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </motion.div>
   )
 }
