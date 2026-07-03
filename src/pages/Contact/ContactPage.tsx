@@ -45,10 +45,10 @@ interface FormErrors {
 }
 
 const contactCards: ContactCard[] = [
-  { icon: FiPhone,  color: '#0057FF', label: 'Call Us',        value: '+91-294-6657300',               sub: 'Mon–Sat, 9am–6pm IST',      href: 'tel:+912946657300' },
+  { icon: FiPhone,  color: '#0057FF', label: 'Call Us',        value: '+91-294-6657300',               sub: 'Mon–Friday, 9am–6pm IST',      href: 'tel:+912946657300' },
   { icon: FiMail,   color: '#00B894', label: 'Email Us',       value: 'sales@e-connectsolutions.com',  sub: 'We reply within 24 hours',   href: 'mailto:sales@e-connectsolutions.com' },
   { icon: FiMapPin, color: '#FF6B35', label: 'Visit Us',       value: 'G-18,19,20 IT Park, M.I.A. Udaipur-313001', sub: 'Rajasthan, India', href: null },
-  { icon: FiClock,  color: '#7B61FF', label: 'Business Hours', value: 'Mon – Saturday',                sub: '9:00 AM – 6:00 PM IST',     href: null },
+  { icon: FiClock,  color: '#7B61FF', label: 'Business Hours', value: 'Mon – Friday',                sub: '9:00 AM – 6:00 PM IST',     href: null },
 ]
 
 const services: string[] = [
