@@ -13,8 +13,9 @@ import type { IconType } from 'react-icons'
 import PageHero from '../../components/PageHero/PageHero'
 import ApplyModal from '../../components/ApplyModal/ApplyModal'
 import {
-  fetchJobs, fetchJobDetail, cleanLocation, formatExp, splitTags,
-  type ApiJob, type ApiJobDetail,
+  fetchJobs, fetchJobDetail, fetchLocations, cleanLocation, formatExp, splitTags,
+  cleanHtml, getOptionLabel,
+  type ApiJob, type ApiJobDetail, type ConfigOption,
 } from '../../services/jobsApi'
 import styles from './CareersPage.module.css'
 
@@ -264,7 +265,7 @@ function JobCard({ job, index, inView, expanded, onToggle }: JobCardProps) {
                       <h4 className={styles.jobSubTitle}>About the Role</h4>
                       <div
                         className={styles.jobHtmlContent}
-                        dangerouslySetInnerHTML={{ __html: detail.candidatedetails }}
+                        dangerouslySetInnerHTML={{ __html: cleanHtml(detail.candidatedetails) }}
                       />
                     </div>
                   )}
@@ -275,7 +276,7 @@ function JobCard({ job, index, inView, expanded, onToggle }: JobCardProps) {
                       <h4 className={styles.jobSubTitle}>Key Responsibilities</h4>
                       <div
                         className={styles.jobHtmlContent}
-                        dangerouslySetInnerHTML={{ __html: detail.responsibilities }}
+                        dangerouslySetInnerHTML={{ __html: cleanHtml(detail.responsibilities) }}
                       />
                     </div>
                   )}
@@ -335,6 +336,8 @@ function JobCard({ job, index, inView, expanded, onToggle }: JobCardProps) {
       {showModal && (
         <ApplyModal
           jobTitle={job.title}
+          jobLocation={job.location}
+          postId={job.id}
           detail={detail}
           onClose={() => setShowModal(false)}
         />
@@ -354,6 +357,14 @@ function OpeningsSection() {
   const [loading, setLoading] = useState<boolean>(true)
   const [error,   setError]   = useState<string>('')
 
+  // Fetch location options from config API
+  const [locOptions, setLocOptions] = useState<ConfigOption[]>([])
+  useEffect(() => {
+    fetchLocations()
+      .then(opts => setLocOptions(opts))
+      .catch(() => {})
+  }, [])
+
   const load = () => {
     setLoading(true); setError('')
     fetchJobs()
@@ -364,7 +375,10 @@ function OpeningsSection() {
   useEffect(() => { load() }, [])
 
   const allPositions  = ['All Positions',  ...Array.from(new Set(jobs.map(j => j.title)))]
-  const allLocations  = ['All Locations',  ...Array.from(new Set(jobs.map(j => j.location)))]
+  // Locations from config API — fall back to job-derived list if API returns nothing
+  const allLocations  = locOptions.length > 0
+    ? ['All Locations', ...locOptions.map(o => getOptionLabel(o)).filter(Boolean)]
+    : ['All Locations',  ...Array.from(new Set(jobs.map(j => j.location)))]
   const allExperience = ['All Experience', ...Array.from(new Set(jobs.map(j => j.exp)))]
 
   const handleApply = () => { setApplied({ ...filters }); setExpanded(null) }
